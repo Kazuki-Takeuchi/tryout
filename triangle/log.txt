@@ -1,0 +1,11 @@
+３辺の長さを指定してください
+Run options: include {:focus=>true}
+
+All examples were filtered out; ignoring {:focus=>true}
+.
+
+Finished in 0.00063 seconds
+1 example, 0 failures
+
+Randomized with seed 54020
+
