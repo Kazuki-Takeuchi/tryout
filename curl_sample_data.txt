@@ -1,0 +1,5 @@
+curl --data-urlencode "authenticity_token=/b+aqpXhkEWA9AGFp0tdYrXYagDrKpanU8oepJ/FT5cjhvmBVfZqShskB2qkkTiizawKGSsyKVLEyih5gcalSg==" --data-urlencode "lecture_sample_message[user]=テスト" --data-urlencode "lecture_sample_message[text]=テキスト" https://tryout.sonicgarden.jp/lecture/sample/messages
+
+curl -X DELETE https://tryout.sonicgarden.jp/lecture/sample/messages/272
+
+curl -X PUT --data-urlencode "authenticity_token=/b+aqpXhkEWA9AGFp0tdYrXYagDrKpanU8oepJ/FT5cjhvmBVfZqShskB2qkkTiizawKGSsyKVLEyih5gcalSg==" --data-urlencode "lecture_sample_message[user]=テスト2" --data-urlencode "lecture_sample_message[text]=テキスト2" https://tryout.sonicgarden.jp/lecture/sample/messages/271
