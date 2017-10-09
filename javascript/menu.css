@@ -42,17 +42,22 @@ nav.menu_area > ul li {
   display: block;
   clear: both;
 }
-div.menu_contents > nav > ul li {
+div.menu_contents > div > ul li {
   float: left;
   list-style-type: none;
   margin-left: 5px;
   margin-right: 5px;
 }
-div.menu_contents > .item1
+div.menu_contents > .item1 > div
 {
+  margin-top: 10px;
   margin-left: 45px;
 }
 div.menu_contents > .item2
 {
-
+  display: none;
+}
+button
+{
+  cursor: pointer;
 }

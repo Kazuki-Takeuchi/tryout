@@ -4,6 +4,8 @@
     <meta charset="utf-8"/>
     <title>menu sample</title>
     <link href="./menu.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./menu.js"></script>
   </head>
   <body>
     <div class='container'>
@@ -20,19 +22,21 @@
           <li class="item4">地図</li>
           <li class="item5">画像</li>
           <li class="item6">もっと見る</li>
-          <li class="item7">検索ツール</li>
+          <li class="item7"><button id='btn_tool'>検索ツール</button></li>
         </ul>
       </nav>
       <div class='menu_contents'>
-        <div class='item1'>約 1,030,000,000</div>
-        <nav class='item2'>
+        <div class='item1'>
+          <div>約 1,030,000,000 件</div>
+        </div>
+        <div class='item2'>
           <ul class="menu">
             <li class="item1">すべての言語</li>
             <li class="item2">期間指定なし</li>
             <li class="item3">すべての結果</li>
             <li class="item4">この付近を検索</li>
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
   </body>
