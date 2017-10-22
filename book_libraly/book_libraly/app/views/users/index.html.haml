@@ -1,0 +1,16 @@
+%h1 利用者一覧
+%table
+  %thead
+    %tr
+      %th 氏名
+      %th 部署
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.department
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'New User', new_user_path
