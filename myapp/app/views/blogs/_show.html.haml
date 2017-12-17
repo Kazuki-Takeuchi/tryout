@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @blog.title
+
+= link_to 'Edit', edit_blog_path(@blog)
+
+= link_to 'Back', blogs_path
+
+%h1 Listing entries
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Body
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - @blog.entries.each do |et|
+
+      %tr
+        %td= et.title
+        %td= et.body
+
+        %td= link_to 'Show', [@blog, et]
+        %td= link_to 'Edit', edit_blog_entry_path(@blog, et)
+        %td= link_to 'Destroy', et, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Entry', new_blog_entry_path(@blog)
