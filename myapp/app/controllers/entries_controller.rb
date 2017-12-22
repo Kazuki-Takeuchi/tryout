@@ -1,24 +1,16 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
 
-  # GET /entries
-  # GET /entries.json
-  def index
-    @entries = Entry.all
-  end
-
   # GET /entries/1
   # GET /entries/1.json
   def show
     @comment = Comment.new
-    @comment.entry_id = @entry.id
-    @comment.status = 'unapproved'
   end
 
   # GET /entries/new
   def new
-    @entry = Entry.new
-    @entry.blog_id = params[:blog_id]
+    @blog = Blog.find(params[:blog_id])
+    @entry = @blog.entries.build
   end
 
   # GET /entries/1/edit
@@ -28,11 +20,12 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new(entry_params)
+    @blog = Blog.find(params[:blog_id])
+    @entry = @blog.entries.build(entry_params)
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        format.html { redirect_to [@blog, @entry], notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @entry }
       else
         format.html { render :new }
@@ -46,7 +39,7 @@ class EntriesController < ApplicationController
   def update
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        format.html { redirect_to [@blog, @entry], notice: 'Entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @entry }
       else
         format.html { render :edit }
@@ -60,7 +53,7 @@ class EntriesController < ApplicationController
   def destroy
     @entry.destroy
     respond_to do |format|
-      format.html { redirect_to entries_url, notice: 'Entry was successfully destroyed.' }
+      format.html { redirect_to blog_url(@blog), notice: 'Entry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +61,8 @@ class EntriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
-      @entry = Entry.find(params[:id])
+      @blog = Blog.find(params[:blog_id])
+      @entry = @blog.entries.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

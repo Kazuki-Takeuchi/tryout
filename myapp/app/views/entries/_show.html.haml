@@ -9,9 +9,9 @@
   %b Body:
   = @entry.body
 
-= link_to 'Edit', edit_blog_path(@entry.blog)
+= link_to 'Edit', edit_blog_entry_path(@blog, @entry)
 \|
-= link_to 'Back', blog_path
+= link_to 'Back', blog_path(@blog)
 
 %p Listing comments
 
@@ -35,23 +35,17 @@
         - else
           %td= '(承認待ち)'
           %td
-            = form_for comment do |f|
-              .field
-                = f.hidden_field :body
-              .field
-                = f.hidden_field :status, :value => 'approved'
-              .field
-                = f.hidden_field :entry_id
-              .field
-                = f.hidden_field :blog_id, :value => @entry.blog_id
+            = form_for(comment,
+             :url => approve_blog_entry_comment_path(@blog, @entry, comment),
+              :html => {method: 'POST'}) do |f|
               .actions
                 = f.submit 'Approved'
-        %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Destroy', blog_entry_comment_path(@blog, @entry, comment), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
 %p New comments
-= form_for @comment do |f|
+= form_for [@blog, @entry, @comment] do |f|
   - if @comment.errors.any?
     #error_explanation
       %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
@@ -63,10 +57,10 @@
     = f.label :body
     = f.text_area :body
   .field
-    = f.hidden_field :status
+    = f.hidden_field :status, :value => 'unapproved'
   .field
-    = f.hidden_field :entry_id
+    = f.hidden_field :entry_id, :value => @entry.id
   .field
-    = f.hidden_field :blog_id, :value => @entry.blog_id
+    = f.hidden_field :blog_id, :value => @blog.id
   .actions
     = f.submit 'Save'
