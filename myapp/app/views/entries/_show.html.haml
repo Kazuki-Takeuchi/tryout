@@ -13,7 +13,7 @@
 \|
 = link_to 'Back', blog_path(@blog)
 
-%p Listing comments
+%h2 Listing comments
 
 %table
   %thead
@@ -34,17 +34,12 @@
           %td
         - else
           %td= '(承認待ち)'
-          %td
-            = form_for(comment,
-             :url => approve_blog_entry_comment_path(@blog, @entry, comment),
-              :html => {method: 'POST'}) do |f|
-              .actions
-                = f.submit 'Approved'
+          %td= link_to 'Approved', approve_blog_entry_comment_path(@blog, @entry, comment), method: :approve
         %td= link_to 'Destroy', blog_entry_comment_path(@blog, @entry, comment), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-%p New comments
+%h2 New comments
 = form_for [@blog, @entry, @comment] do |f|
   - if @comment.errors.any?
     #error_explanation
@@ -58,9 +53,5 @@
     = f.text_area :body
   .field
     = f.hidden_field :status, :value => 'unapproved'
-  .field
-    = f.hidden_field :entry_id, :value => @entry.id
-  .field
-    = f.hidden_field :blog_id, :value => @blog.id
   .actions
     = f.submit 'Save'
