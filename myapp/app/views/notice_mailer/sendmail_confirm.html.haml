@@ -1,0 +1,14 @@
+%div
+  = "新しいコメントが登録されました。"
+%br
+%div
+  = "承認または削除してください。"
+%br
+%div
+  = "Blog：" + @blog.title
+%div
+  = "Entry:" + @entry.title
+%div
+  = "Comment:" + @comment.body
+%div
+  = "URL:" + edit_blog_entry_url(@blog, @entry)

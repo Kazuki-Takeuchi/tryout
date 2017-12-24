@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     @comment = @entry.comments.build(comment_params)
     @comment.status = 'unapproved'
 
+    @mail = NoticeMailer.sendmail_confirm(@blog, @entry, @comment, 'admin@example.com').deliver
     respond_to do |format|
       if @comment.save
         format.html { redirect_to [@blog, @entry], notice: 'Comment was successfully created.' }
