@@ -45,6 +45,8 @@ group :development, :test do
   gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
   gem 'rspec', '3.7.0'
   gem 'rspec-rails', '3.7.2'
+  gem 'rails-controller-testing'
+  gem 'database_rewinder'
 end
 
 group :development do
