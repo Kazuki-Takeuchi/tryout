@@ -47,6 +47,9 @@ group :development, :test do
   gem 'rspec-rails', '3.7.2'
   gem 'rails-controller-testing'
   gem 'database_rewinder'
+  gem 'ruby-debug-ide'
+  gem 'debase'
+  gem 'rcodetools'
 end
 
 group :development do
